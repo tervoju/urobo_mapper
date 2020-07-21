@@ -4,50 +4,56 @@
 
 clone the repo
 
-expecting ros melodic installed 
+[mapper](https://github.com/tervoju/urobo_mapper)
 
-ros environment
 
+### Environment
+Distributor ID:	Ubuntu
+Description:	Ubuntu 18.04.4 LTS
+Release:	18.04
+Codename:	bionic
+
+use ros environment melodic
 ```
 source /opt/ros/melodic/setup.bash
 ```
-
 remove build and or devel folders (if there is any)
 
-requres teleop_twist_keyboard
+requires ros, gazebo, rviz, rtab ros lib, teleop
 
-also requires ros, gazebo, rviz, amcl ros lib
+[rtab](http://wiki.ros.org/rtabmap_ros)
+[teleop](https://github.com/ros-teleop/teleop_twist_keyboard)
 
+## Build and launch
 
-## launch
+```
+catkin_make
+```
 
-after successfull build 
+after successfull build run in separate terminals
 
 ``` 
 source devel/setup.bash
 
 roslaunch my_robot world.launch
 
-roslaunch my_robot amcl.launch
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+
+roslaunch my_robot mapping.launch
 ```
 
-## other
-in rviz add "map", camera
 
-
-## robot
-created a simplistic robot with .xacro
+## Robot
+created a simplistic "my_robot" robot with .xacro
 sensors include lidar and camera
 
-## world
+## World
 simple house (actually similar  floorplan as my house in the countryside)
 
-## localization
-used amcl library to localize a robot
-in maps folder "map.pgm" image of the house floor plan
 
 ## known issues
 
-robot can be stucked to corners
-
-robot can make funny routes to target locations
+robot can easily be stucked to corners
+camera orientation different what was recommended in the project intro
+created map in /images folder as mapping.png
+tested several times the mapping and was expecting "better" results
